@@ -1,6 +1,8 @@
+[ ![Download](https://api.bintray.com/packages/pulimet/sh-pref/sh-pref/images/download.svg) ](https://bintray.com/pulimet/sh-pref/sh-pref/_latestVersion)
+
 # ShPref-Library
 
-ShPref is a small library that simplfies the way to get,set and remove shared preferences on Android.
+ShPref is a small library that simplfies the way to get, set and remove shared preferences on Android.
 
 # Installation
 
