@@ -2,7 +2,7 @@
 
 # ShPref-Library
 
-ShPref is a small library that simplfies the way to get, set and remove shared preferences on Android.
+ShPref is a small library that simplifies the way to get, set and remove shared preferences on Android.
 
 # Installation
 
@@ -34,4 +34,26 @@ public class MyApplication extends Application {
 
 # How to use it
 
-Coming soon...
+Firstable on initialization (at yours application class) you should pass default saving mode as a second argument. As you know, there are two options: APPLY or COMMIT. 
+
+
+- Put:
+With put() method you can save following: String, int, boolean, float and long.
+```sh
+ShPref.put(R.string.some_key, "Sample text");
+ShPref.put("HardCodedKey", 25);
+```
+
+- Get:
+```sh
+ShPref.getString(R.string.some_key, "Default value");
+ShPref.getInt("HardCodedKey", 0); // 0 is default value
+```
+
+- Remove:
+```sh
+ShPref.remove(R.string.key_key);
+ShPref.remove("HardCodedKey");
+```
+
+
