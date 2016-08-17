@@ -37,8 +37,9 @@ public class MyApplication extends Application {
 Firstable on initialization (at yours application class) you should pass default saving mode as a second argument. As you know, there are two options: APPLY or COMMIT. 
 
 
+With ShPref library you can use following types: String, int, boolean, float and long.
+
 - Put:
-With put() method you can save following: String, int, boolean, float and long.
 ```sh
 ShPref.put(R.string.some_key, "Sample text");
 ShPref.put("HardCodedKey", 25);
