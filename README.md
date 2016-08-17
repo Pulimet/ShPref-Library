@@ -1,7 +1,6 @@
 # ShPref-Library
-Shared Preferences helper library.
 
-ShPref is a small library that simplfies  getting and setting shared preferences on Android.
+ShPref is a small library that simplfies the way to get,set and remove shared preferences on Android.
 
 # Installation
 
