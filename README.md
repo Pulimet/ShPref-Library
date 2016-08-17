@@ -39,27 +39,27 @@ Firstable on initialization (at yours application class) you should pass default
 
 With ShPref library you can use following types: String, int, boolean, float and long.
 
- <br> <br>
+ <br> 
 - Put:
 ```sh
 ShPref.put(R.string.some_key, "Sample text");
 ShPref.put("HardCodedKey", 25);
 ```
 
- <br> <br>
+ <br>
 - Get:
 ```sh
 ShPref.getString(R.string.some_key, "Default value");
 ShPref.getInt("HardCodedKey", 0); // 0 is default value
 ```
 
- <br> <br>
+ <br> 
 - Remove:
 ```sh
 ShPref.remove(R.string.key_key);
 ShPref.remove("HardCodedKey");
 ```
- <br> <br>
+ <br> 
 
 - Mode forcing methods: <br>
 For example if you have choosen as default APPLY mode and you need to save or remove something using COMMIT there are special methods for that case:
