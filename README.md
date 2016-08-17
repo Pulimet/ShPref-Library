@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.sh-pref:sh-pref:1.0'
+    compile 'net.alexandroid.shpref:sh-pref:1.0'
 }
 ```
 
