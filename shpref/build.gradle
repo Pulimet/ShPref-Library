@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 ext {
-    bintrayRepo = 'sh-pref'
-    bintrayName = 'sh-pref'
+    bintrayRepo = 'utils'
+    bintrayName = 'shpref'
 
-    publishedGroupId = 'net.alexandroid.shpref'
+    publishedGroupId = 'net.alexandroid.utils'
     libraryName = 'Shared Preference Helper'
-    artifact = 'sh-pref'
+    artifact = 'shpref'
 
     libraryDescription = 'Shared Preferences Helper library for getting and setting shared preferences'
 
