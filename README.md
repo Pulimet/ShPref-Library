@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/pulimet/sh-pref/sh-pref/images/download.svg) ](https://bintray.com/pulimet/sh-pref/sh-pref/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion)
 
 # ShPref-Library
 
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.shpref:sh-pref:1.0'
+    compile 'net.alexandroid.utils:shpref:1.0'
 }
 ```
 
