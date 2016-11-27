@@ -8,6 +8,11 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SuppressLint("CommitPrefEdits")
 public class ShPref {
@@ -97,6 +102,16 @@ public class ShPref {
         } else {
             forceCommit = false;
             editor.commit();
+        }
+    }
+
+    public static void putList(String key, List list) {
+        if (list == null || list.size() < 1) {
+            return;
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            put(String.format(Locale.ENGLISH, "listKey_%s_%d", key, i), list.get(i));
         }
     }
 
@@ -354,6 +369,101 @@ public class ShPref {
      */
     public static long getLong(String key) {
         return getLong(key, 0);
+    }
+
+
+    // =========== Get lists ==============
+
+    public static List<String> getListOfStrings(String key) {
+        List<String> list = new ArrayList<>();
+        int i = 0;
+        String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        while (contains(itemKey)) {
+            list.add(getString(itemKey));
+            i++;
+            itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        }
+        return list;
+    }
+
+    public static List<Integer> getListOfIntegers(String key) {
+        List<Integer> list = new ArrayList<>();
+        int i = 0;
+        String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        while (contains(itemKey)) {
+            list.add(getInt(itemKey));
+            i++;
+            itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        }
+        return list;
+    }
+
+    public static List<Boolean> getListOfBooleans(String key) {
+        List<Boolean> list = new ArrayList<>();
+        int i = 0;
+        String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        while (contains(itemKey)) {
+            list.add(getBoolean(itemKey));
+            i++;
+            itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        }
+        return list;
+    }
+
+    public static List<Float> getListOfFloats(String key) {
+        List<Float> list = new ArrayList<>();
+        int i = 0;
+        String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        while (contains(itemKey)) {
+            list.add(getFloat(itemKey));
+            i++;
+            itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        }
+        return list;
+    }
+
+    public static List<Long> getListOfLongs(String key) {
+        List<Long> list = new ArrayList<>();
+        int i = 0;
+        String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        while (contains(itemKey)) {
+            list.add(getLong(itemKey));
+            i++;
+            itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        }
+        return list;
+    }
+
+    public static List getMixedList(String key) {
+        List<Object> list = new ArrayList<>();
+        int i = 0;
+        String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        while (contains(itemKey)) {
+            Object obj = get(itemKey);
+            list.add(obj);
+            i++;
+            itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        }
+        return list;
+    }
+
+    public static Object get(String itemKey) {
+        Map<String, ?> all = sShPref.getAll();
+        Object object = all.get(itemKey);
+
+        if (object instanceof String) {
+            return getString(itemKey);
+        } else if (object instanceof Integer) {
+            return getInt(itemKey);
+        } else if (object instanceof Boolean) {
+            return getBoolean(itemKey);
+        } else if (object instanceof Float) {
+            return getFloat(itemKey);
+        } else if (object instanceof Long) {
+            return getLong(itemKey);
+        } else {
+            return null;
+        }
     }
 
 

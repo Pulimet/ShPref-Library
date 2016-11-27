@@ -10,6 +10,9 @@ import android.widget.Toast;
 import net.alexandroid.shpref.MyLog;
 import net.alexandroid.shpref.ShPref;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static net.alexandroid.shpref.ShPref.put;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnSaveWithEditor).setOnClickListener(this);
         findViewById(R.id.btnLoadTestEditor).setOnClickListener(this);
         findViewById(R.id.btnTestLogger).setOnClickListener(this);
+        findViewById(R.id.btnSaveList).setOnClickListener(this);
+        findViewById(R.id.btnLoadList).setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +62,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnTestLogger:
                 onTestLoggerBtnPressed();
+                break;
+            case R.id.btnSaveList:
+                onSaveListBtnPressed();
+                break;
+            case R.id.btnLoadList:
+                onLoadListBtnPressed();
                 break;
         }
     }
@@ -116,6 +127,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTextView.setText(R.string.logger_test);
         showToast(getString(R.string.logger_test));
     }
+
+
+    private void onSaveListBtnPressed() {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+        ShPref.putList("myListKey", list);
+
+        mTextView.setText(R.string.saved_a_list);
+        showToast(getString(R.string.saved_a_list));
+    }
+
+
+    private void onLoadListBtnPressed() {
+        List<Integer> list = ShPref.getListOfIntegers("myListKey");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Result: ");
+        for (Integer i : list) {
+            stringBuilder.append(i).append(", ");
+        }
+        mTextView.setText(stringBuilder.toString());
+        showToast(stringBuilder.toString());
+    }
+
 
     private void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
