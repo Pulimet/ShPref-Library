@@ -8,4 +8,10 @@
     <string name="loaded_text">"Loaded text: "</string>
     <string name="remove">Remove</string>
     <string name="saved_text_removed">Saved text removed</string>
+    <string name="contains">Contains?</string>
+    <string name="contains2">"Contains: "</string>
+    <string name="save_with_editor">Save with Editor</string>
+    <string name="load_saved_data_with_editor">Load saved data with Editor</string>
+    <string name="test_logger">Test Logger</string>
+    <string name="logger_test">Logger test</string>
 </resources>

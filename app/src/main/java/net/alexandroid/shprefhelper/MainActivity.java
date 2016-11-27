@@ -1,12 +1,16 @@
 package net.alexandroid.shprefhelper;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import net.alexandroid.shpref.MyLog;
 import net.alexandroid.shpref.ShPref;
+
+import static net.alexandroid.shpref.ShPref.put;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,10 +24,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setViewsAndListeners() {
-        mTextView = (TextView)findViewById(R.id.textView);
+        mTextView = (TextView) findViewById(R.id.textView);
         findViewById(R.id.btnLoad).setOnClickListener(this);
         findViewById(R.id.btnSave).setOnClickListener(this);
         findViewById(R.id.btnRemove).setOnClickListener(this);
+        findViewById(R.id.btnContains).setOnClickListener(this);
+        findViewById(R.id.btnSaveWithEditor).setOnClickListener(this);
+        findViewById(R.id.btnLoadTestEditor).setOnClickListener(this);
+        findViewById(R.id.btnTestLogger).setOnClickListener(this);
     }
 
     @Override
@@ -38,25 +46,80 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnRemove:
                 onRemoveBtnPressed();
                 break;
+            case R.id.btnContains:
+                onContainsBtnPressed();
+                break;
+            case R.id.btnSaveWithEditor:
+                onSaveWithEditorBtnPressed();
+                break;
+            case R.id.btnLoadTestEditor:
+                onLoadDataSavedWithEditorBtnPressed();
+                break;
+            case R.id.btnTestLogger:
+                onTestLoggerBtnPressed();
+                break;
         }
     }
 
 
-
     private void onSaveBtnPressed() {
-        ShPref.put(R.string.key_key, "Sample text");
+        put(R.string.key_key, "Sample text");
         mTextView.setText(R.string.some_text_was_saved);
+        showToast("Saved");
     }
 
     @SuppressLint("SetTextI18n") // To make it simple
     private void onLoadBtnPressed() {
         String loadedText = ShPref.getString(R.string.key_key, "Default value");
-        mTextView.setText(getString(R.string.loaded_text) + loadedText);
+        String result = getString(R.string.loaded_text) + loadedText;
+        mTextView.setText(result);
+        showToast(result);
     }
 
     private void onRemoveBtnPressed() {
         ShPref.remove(R.string.key_key);
         mTextView.setText(R.string.saved_text_removed);
+        showToast(getString(R.string.saved_text_removed));
     }
+
+    private void onContainsBtnPressed() {
+        boolean isContains = ShPref.contains(R.string.key_key);
+        String result = getString(R.string.contains2) + " " + isContains;
+        mTextView.setText(result);
+        showToast(result);
+    }
+
+    private void onSaveWithEditorBtnPressed() {
+        new ShPref.Editor()
+                .put("key1", "key1value")
+                .put("key2", "key2value")
+                .put("key3", "key3value")
+                .commit();
+        mTextView.setText(R.string.some_text_was_saved);
+        showToast("Saved with editor");
+    }
+
+    private void onLoadDataSavedWithEditorBtnPressed() {
+        String loadedText = ShPref.getString("key1") + ", " + ShPref.getString("key2") + ", " + ShPref.getString("key3");
+        String result = getString(R.string.loaded_text) + loadedText;
+        mTextView.setText(result);
+        showToast(result);
+    }
+
+    private void onTestLoggerBtnPressed() {
+        MyLog.showLogs(true);
+        MyLog.d("Debug test");
+        MyLog.e("Error test");
+        MyLog.setTag("NEW TAG");
+        MyLog.i("Testing setTag method ^)");
+
+        mTextView.setText(R.string.logger_test);
+        showToast(getString(R.string.logger_test));
+    }
+
+    private void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
 
 }

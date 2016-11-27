@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SuppressLint("CommitPrefEdits")
@@ -28,12 +30,6 @@ public class ShPref {
     private static SharedPreferences sShPref;
 
     /**
-     * Application context instance assigned on init
-     */
-    @SuppressLint("StaticFieldLeak")
-    private static Context sAppContext;
-
-    /**
      * Boolean bellow used to choose write method, regardless of the default.
      * Used by: putC(), putA(), removeA(), removeC()
      */
@@ -44,11 +40,23 @@ public class ShPref {
      * @param defaultWriteMode - default write method. Apply or commit.
      */
     public static void init(Context appContext, int defaultWriteMode) {
-        sAppContext = appContext;
+        Contextor.getInstance().init(appContext);
         sShPref = PreferenceManager.getDefaultSharedPreferences(appContext);
         sDefaultWriteMode = defaultWriteMode;
     }
 
+
+    // ============= Contains ============
+    public static boolean contains(@StringRes int key) {
+        return contains(Contextor.getInstance().getContext().getString(key));
+    }
+
+    private static boolean contains(String key) {
+        return sShPref.contains(key);
+    }
+
+
+    // ============= Put ============
 
     /**
      * Put key value to shared preferences
@@ -56,8 +64,8 @@ public class ShPref {
      * @param key   - string resource id as a key. The name of the preference to modify.
      * @param value - value
      */
-    public static void put(int key, Object value) {
-        put(sAppContext.getString(key), value);
+    public static void put(@StringRes int key, Object value) {
+        put(Contextor.getInstance().getContext().getString(key), value);
     }
 
     /**
@@ -101,9 +109,9 @@ public class ShPref {
      * @param key   - string resource id as a key. The name of the preference to modify.
      * @param value - value
      */
-    public static void putC(int key, Object value) {
+    public static void putC(@StringRes int key, Object value) {
         forceCommit = true;
-        put(sAppContext.getString(key), value);
+        put(Contextor.getInstance().getContext().getString(key), value);
     }
 
     /**
@@ -119,15 +127,16 @@ public class ShPref {
 
 
     // Force apply
+
     /**
      * Write value on the background regardless of the default writing mode.
      *
      * @param key   - string resource id as a key. The name of the preference to modify.
      * @param value - value
      */
-    public static void putA(int key, Object value) {
+    public static void putA(@StringRes int key, Object value) {
         forceApply = true;
-        put(sAppContext.getString(key), value);
+        put(Contextor.getInstance().getContext().getString(key), value);
     }
 
     /**
@@ -142,21 +151,21 @@ public class ShPref {
     }
 
 
-    // Get methods
+    // ============= Get ============
 
     // String
 
     /**
-     * @param key The name of the preference to retrieve.
+     * @param key          The name of the preference to retrieve.
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static String getString(int key, String defaultValue) {
-        return getString(sAppContext.getString(key), defaultValue);
+    public static String getString(@StringRes int key, String defaultValue) {
+        return getString(Contextor.getInstance().getContext().getString(key), defaultValue);
     }
 
     /**
-     * @param key The name of the preference to retrieve.
+     * @param key          The name of the preference to retrieve.
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
@@ -168,18 +177,37 @@ public class ShPref {
         }
     }
 
-    // Int
     /**
      * @param key The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue
+     * @return Returns the preference value if it exists or null
      */
-    public static int getInt(int key, int defaultValue) {
-        return getInt(sAppContext.getString(key), defaultValue);
+    @Nullable
+    public static String getString(@StringRes int key) {
+        return getString(Contextor.getInstance().getContext().getString(key), null);
     }
 
     /**
      * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists or null
+     */
+    @Nullable
+    public static String getString(String key) {
+        return getString(key, null);
+    }
+
+    // Int
+
+    /**
+     * @param key          The name of the preference to retrieve.
+     * @param defaultValue Value to return if this preference does not exist.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static int getInt(@StringRes int key, int defaultValue) {
+        return getInt(Contextor.getInstance().getContext().getString(key), defaultValue);
+    }
+
+    /**
+     * @param key          The name of the preference to retrieve.
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
@@ -191,18 +219,35 @@ public class ShPref {
         }
     }
 
-    // Boolean
     /**
      * @param key The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue
+     * @return Returns the preference value if it exists or 0
      */
-    public static boolean getBoolean(int key, boolean defaultValue) {
-        return getBoolean(sAppContext.getString(key), defaultValue);
+    public static int getInt(@StringRes int key) {
+        return getInt(Contextor.getInstance().getContext().getString(key), 0);
     }
 
     /**
      * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists or 0
+     */
+    public static int getInt(String key) {
+        return getInt(key, 0);
+    }
+
+    // Boolean
+
+    /**
+     * @param key          The name of the preference to retrieve.
+     * @param defaultValue Value to return if this preference does not exist.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static boolean getBoolean(@StringRes int key, boolean defaultValue) {
+        return getBoolean(Contextor.getInstance().getContext().getString(key), defaultValue);
+    }
+
+    /**
+     * @param key          The name of the preference to retrieve.
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
@@ -214,19 +259,36 @@ public class ShPref {
         }
     }
 
-
-    // Float
     /**
      * @param key The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static float getFloat(int key, float defaultValue) {
-        return getFloat(sAppContext.getString(key), defaultValue);
+    public static boolean getBoolean(@StringRes int key) {
+        return getBoolean(Contextor.getInstance().getContext().getString(key), false);
     }
 
     /**
      * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static boolean getBoolean(String key) {
+        return getBoolean(key, false);
+    }
+
+
+    // Float
+
+    /**
+     * @param key          The name of the preference to retrieve.
+     * @param defaultValue Value to return if this preference does not exist.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static float getFloat(@StringRes int key, float defaultValue) {
+        return getFloat(Contextor.getInstance().getContext().getString(key), defaultValue);
+    }
+
+    /**
+     * @param key          The name of the preference to retrieve.
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
@@ -238,18 +300,35 @@ public class ShPref {
         }
     }
 
-    // Long
     /**
      * @param key The name of the preference to retrieve.
-     * @param defaultValue Value to return if this preference does not exist.
-     * @return Returns the preference value if it exists, or defValue
+     * @return Returns the preference value if it exists, or 0
      */
-    public static long getLong(int key, long defaultValue) {
-        return getLong(sAppContext.getString(key), defaultValue);
+    public static float getFloat(@StringRes int key) {
+        return getFloat(Contextor.getInstance().getContext().getString(key), 0);
     }
 
     /**
      * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists, or 0
+     */
+    public static float getFloat(String key) {
+        return getFloat(key, 0);
+    }
+
+    // Long
+
+    /**
+     * @param key          The name of the preference to retrieve.
+     * @param defaultValue Value to return if this preference does not exist.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static long getLong(@StringRes int key, long defaultValue) {
+        return getLong(Contextor.getInstance().getContext().getString(key), defaultValue);
+    }
+
+    /**
+     * @param key          The name of the preference to retrieve.
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
@@ -261,14 +340,30 @@ public class ShPref {
         }
     }
 
+    /**
+     * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static long getLong(@StringRes int key) {
+        return getLong(Contextor.getInstance().getContext().getString(key), 0);
+    }
 
-    // Remove
+    /**
+     * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static long getLong(String key) {
+        return getLong(key, 0);
+    }
+
+
+    // ============= Remove ============
 
     /**
      * @param key The name of the preference to remove.
      */
-    public static void remove(int key) {
-        remove(sAppContext.getString(key));
+    public static void remove(@StringRes int key) {
+        remove(Contextor.getInstance().getContext().getString(key));
     }
 
     /**
@@ -290,17 +385,17 @@ public class ShPref {
     /**
      * Remove preference on the background regardless of the default writing mode.
      *
-     * @param key   - string resource id as a key. The name of the preference to remove.
+     * @param key - string resource id as a key. The name of the preference to remove.
      */
-    public static void removeA(int key) {
+    public static void removeA(@StringRes int key) {
         forceApply = true;
-        remove(sAppContext.getString(key));
+        remove(Contextor.getInstance().getContext().getString(key));
     }
 
     /**
      * Remove preference on the background regardless of the default writing mode.
      *
-     * @param key   - string resource id as a key. The name of the preference to remove.
+     * @param key - string resource id as a key. The name of the preference to remove.
      */
     public static void removeA(String key) {
         forceApply = true;
@@ -310,21 +405,67 @@ public class ShPref {
     /**
      * Remove preference on the same thread regardless of the default writing mode.
      *
-     * @param key   - string resource id as a key. The name of the preference to remove.
+     * @param key - string resource id as a key. The name of the preference to remove.
      */
-    public static void removeC(int key) {
+    public static void removeC(@StringRes int key) {
         forceCommit = true;
-        remove(sAppContext.getString(key));
+        remove(Contextor.getInstance().getContext().getString(key));
     }
 
     /**
      * Remove preference on the same thread regardless of the default writing mode.
      *
-     * @param key   - string resource id as a key. The name of the preference to remove.
+     * @param key - string resource id as a key. The name of the preference to remove.
      */
     public static void removeC(String key) {
         forceCommit = true;
         remove(key);
     }
+
+    // ============ Clear =====
+
+    /**
+     * Remove all values from the preferences.
+     */
+    public static void clear() {
+        sShPref.edit().clear();
+    }
+
+    // Builder class
+    public static class Editor {
+        private SharedPreferences.Editor editor;
+
+        public Editor() {
+            this.editor = sShPref.edit();
+        }
+
+        public Editor put(@StringRes int key, Object value) {
+            return put(Contextor.getInstance().getContext().getString(key), value);
+        }
+
+        public Editor put(String key, Object value) {
+            if (value instanceof String) {
+                editor.putString(key, (String) value);
+            } else if (value instanceof Integer) {
+                editor.putInt(key, (int) value);
+            } else if (value instanceof Boolean) {
+                editor.putBoolean(key, (boolean) value);
+            } else if (value instanceof Float) {
+                editor.putFloat(key, (float) value);
+            } else if (value instanceof Long) {
+                editor.putLong(key, (long) value);
+            }
+            return this;
+        }
+
+        public void commit() {
+            editor.commit();
+        }
+
+        public void apply() {
+            editor.apply();
+        }
+    }
+
 
 }
