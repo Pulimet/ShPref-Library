@@ -52,6 +52,11 @@ public class ShPref {
 
 
     // ============= Contains ============
+
+    /**
+     * @param key   - string as a key. The name of the preference to check for existence.
+     * @return true if exist
+     */
     public static boolean contains(@StringRes int key) {
         return contains(Contextor.getInstance().getContext().getString(key));
     }
