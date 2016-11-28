@@ -87,7 +87,7 @@ public class ShPref {
     public static void put(String key, Object value) {
         SharedPreferences.Editor editor;
 
-        if (value instanceof String) {
+        if (value instanceof String || value == null) {
             editor = sShPref.edit().putString(key, (String) value);
         } else if (value instanceof Integer) {
             editor = sShPref.edit().putInt(key, (int) value);
