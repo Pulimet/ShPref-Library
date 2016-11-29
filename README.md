@@ -44,7 +44,7 @@ On initialization (at yours application class) you should pass default saving mo
 As you know, there are two options to save: APPLY (faster and asynchronous) or COMMIT. 
 
 
-With ShPref library you can use following types: String, int, boolean, float, long and lists with that types.
+With ShPref library you can use following types: String, int, boolean, float, double, long and lists with that types.
 
  <br> 
 - Put:
