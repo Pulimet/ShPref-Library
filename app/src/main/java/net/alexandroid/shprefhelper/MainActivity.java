@@ -13,7 +13,6 @@ import net.alexandroid.shpref.ShPref;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.alexandroid.shpref.ShPref.put;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -74,8 +73,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void onSaveBtnPressed() {
-        put(R.string.key_key, "Sample text");
+        ShPref.put(R.string.key_key, "Sample text");
         mTextView.setText(R.string.some_text_was_saved);
+
+        // TEST
+        ShPref.put("Integer", 123);
+        ShPref.put("Boolean", false);
+        ShPref.put("Float", 1.23f);
+        ShPref.put("Long", 123456789L);
+        ShPref.put("Double", 3.45678);
+
         showToast("Saved");
     }
 
@@ -84,6 +91,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String loadedText = ShPref.getString(R.string.key_key, "Default value");
         String result = getString(R.string.loaded_text) + loadedText;
         mTextView.setText(result);
+
+        MyLog.d("Integer: " + ShPref.getInt("Integer", 0));
+        MyLog.d("Boolean: " + ShPref.getBoolean("Boolean", true));
+        MyLog.d("Float: " + ShPref.getFloat("Float", 0.0f));
+        MyLog.d("Long: " + ShPref.getLong("Long", 0L));
+        MyLog.d("Double: " + ShPref.getDouble("Double", 1.0));
         showToast(result);
     }
 

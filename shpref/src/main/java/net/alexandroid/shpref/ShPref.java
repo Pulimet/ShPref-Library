@@ -54,7 +54,7 @@ public class ShPref {
     // ============= Contains ============
 
     /**
-     * @param key   - string as a key. The name of the preference to check for existence.
+     * @param key - string as a key. The name of the preference to check for existence.
      * @return true if exist
      */
     public static boolean contains(@StringRes int key) {
@@ -72,32 +72,42 @@ public class ShPref {
      * Put key value to shared preferences
      *
      * @param key   - string resource id as a key. The name of the preference to modify.
-     * @param value - value
+     * @param value - the new value for the preference. Passing null for this argument is equivalent to calling remove(key)
      */
     public static void put(@StringRes int key, Object value) {
         put(Contextor.getInstance().getContext().getString(key), value);
     }
 
     /**
-     * Put key value to shared preferences
+     * Put key value to shared preferences.
+     * If value is null
      *
      * @param key   - string as a key. The name of the preference to modify.
-     * @param value - value
+     * @param value - the new value for the preference. Passing null for this argument is equivalent to calling remove(key)
      */
     public static void put(String key, Object value) {
         SharedPreferences.Editor editor;
 
         if (value instanceof String || value == null) {
             editor = sShPref.edit().putString(key, (String) value);
+            MyLog.d("String saved: " + value);
         } else if (value instanceof Integer) {
             editor = sShPref.edit().putInt(key, (int) value);
+            MyLog.d("Integer saved: " + value);
         } else if (value instanceof Boolean) {
             editor = sShPref.edit().putBoolean(key, (boolean) value);
+            MyLog.d("Boolean saved: " + value);
         } else if (value instanceof Float) {
             editor = sShPref.edit().putFloat(key, (float) value);
+            MyLog.d("Float saved: " + value);
+        } else if (value instanceof Double) {
+            editor = sShPref.edit().putLong(key, Double.doubleToRawLongBits((Double) value));
+            MyLog.d("Double saved: " + value);
         } else if (value instanceof Long) {
             editor = sShPref.edit().putLong(key, (long) value);
+            MyLog.d("Long saved: " + value);
         } else {
+            MyLog.d("Not saved: " + value);
             return;
         }
 
@@ -336,6 +346,47 @@ public class ShPref {
         return getFloat(key, 0);
     }
 
+    // Double
+
+    /**
+     * @param key          The name of the preference to retrieve.
+     * @param defaultValue Value to return if this preference does not exist.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static double getDouble(@StringRes int key, double defaultValue) {
+        return getDouble(Contextor.getInstance().getContext().getString(key), defaultValue);
+    }
+
+    /**
+     * @param key          The name of the preference to retrieve.
+     * @param defaultValue Value to return if this preference does not exist.
+     * @return Returns the preference value if it exists, or defValue
+     */
+    public static double getDouble(String key, double defaultValue) {
+        try {
+            return Double.longBitsToDouble(sShPref.getLong(key, Double.doubleToLongBits(defaultValue)));
+        } catch (Resources.NotFoundException e) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists, or 0
+     */
+    public static double getDouble(@StringRes int key) {
+        return getDouble(Contextor.getInstance().getContext().getString(key), 0);
+    }
+
+    /**
+     * @param key The name of the preference to retrieve.
+     * @return Returns the preference value if it exists, or 0
+     */
+    public static double getDouble(String key) {
+        return getDouble(key, 0);
+    }
+
+
     // Long
 
     /**
@@ -427,6 +478,18 @@ public class ShPref {
         return list;
     }
 
+    public static List<Double> getListOfDoubles(String key) {
+        List<Double> list = new ArrayList<>();
+        int i = 0;
+        String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        while (contains(itemKey)) {
+            list.add(getDouble(itemKey));
+            i++;
+            itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+        }
+        return list;
+    }
+
     public static List<Long> getListOfLongs(String key) {
         List<Long> list = new ArrayList<>();
         int i = 0;
@@ -464,6 +527,8 @@ public class ShPref {
             return getBoolean(itemKey);
         } else if (object instanceof Float) {
             return getFloat(itemKey);
+        } else if (object instanceof Double) {
+            return getDouble(itemKey);
         } else if (object instanceof Long) {
             return getLong(itemKey);
         } else {
@@ -567,6 +632,8 @@ public class ShPref {
                 editor.putBoolean(key, (boolean) value);
             } else if (value instanceof Float) {
                 editor.putFloat(key, (float) value);
+            } else if (value instanceof Double) {
+                editor.putLong(key, Double.doubleToRawLongBits((Double) value));
             } else if (value instanceof Long) {
                 editor.putLong(key, (long) value);
             }
