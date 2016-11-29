@@ -68,6 +68,8 @@ public class ShPref {
 
     // ============= Put ============
 
+
+
     /**
      * Put key value to shared preferences
      *
@@ -90,24 +92,17 @@ public class ShPref {
 
         if (value instanceof String || value == null) {
             editor = sShPref.edit().putString(key, (String) value);
-            MyLog.d("String saved: " + value);
         } else if (value instanceof Integer) {
             editor = sShPref.edit().putInt(key, (int) value);
-            MyLog.d("Integer saved: " + value);
         } else if (value instanceof Boolean) {
             editor = sShPref.edit().putBoolean(key, (boolean) value);
-            MyLog.d("Boolean saved: " + value);
         } else if (value instanceof Float) {
             editor = sShPref.edit().putFloat(key, (float) value);
-            MyLog.d("Float saved: " + value);
         } else if (value instanceof Double) {
             editor = sShPref.edit().putLong(key, Double.doubleToRawLongBits((Double) value));
-            MyLog.d("Double saved: " + value);
         } else if (value instanceof Long) {
             editor = sShPref.edit().putLong(key, (long) value);
-            MyLog.d("Long saved: " + value);
         } else {
-            MyLog.d("Not saved: " + value);
             return;
         }
 
