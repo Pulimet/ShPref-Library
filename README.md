@@ -142,7 +142,7 @@ MyLog.i("Testing setTag method ^)");
 
 # License
 
-```sh
+```
 Copyright 2016 Alexey Korolev
 
 Licensed under the Apache License, Version 2.0 (the "License");
