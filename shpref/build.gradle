@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/Pulimet/ShPref-Library'
     gitUrl = 'https://github.com/Pulimet/ShPref-Library.git'
 
-    libraryVersion = '1.1'
+    libraryVersion = '1.2'
 
     developerId = 'pulimet'
     developerName = 'Alexey Korolev'
@@ -33,8 +33,8 @@ android {
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 25
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
     }
     buildTypes {
         release {
