@@ -68,8 +68,6 @@ public class ShPref {
 
     // ============= Put ============
 
-
-
     /**
      * Put key value to shared preferences
      *
@@ -603,7 +601,7 @@ public class ShPref {
      * Remove all values from the preferences.
      */
     public static void clear() {
-        sShPref.edit().clear();
+        sShPref.edit().clear().commit();
     }
 
     // Builder class
