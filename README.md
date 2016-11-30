@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ShPref-brightgreen.svg?style=flat)]()
 
 # ShPref-Library
 
@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.utils:shpref:1.1'
+    compile 'net.alexandroid.utils:shpref:1.2'
 }
 ```
 
@@ -44,7 +44,7 @@ On initialization (at yours application class) you should pass default saving mo
 As you know, there are two options to save: APPLY (faster and asynchronous) or COMMIT. 
 
 
-With ShPref library you can use following types: String, int, boolean, float, long and lists with that types.
+With ShPref library you can use following types: String, int, boolean, float, double, long and lists with that types.
 
  <br> 
 - Put:
@@ -138,3 +138,22 @@ MyLog.i("Testing setTag method ^)");
 ```
 
 ![alt tag](http://www.alexandroid.net/downloads/bintray_libs/logs.png)
+
+
+# License
+
+```
+Copyright 2016 Alexey Korolev
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
