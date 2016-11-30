@@ -16,4 +16,19 @@
     <string name="save_list">Save list</string>
     <string name="load_list">Load list</string>
     <string name="saved_a_list">Saved a list</string>
+
+
+
+
+    <string name="test_key_1">test_key_1</string>
+    <string name="test_key_2">test_key_2</string>
+    <string name="test_key_3">test_key_3</string>
+    <string name="test_key_4">test_key_4</string>
+    <string name="test_key_5">test_key_5</string>
+    <string name="test_key_6">test_key_6</string>
+    <string name="test_key_7">test_key_7</string>
+
+
+
+
 </resources>

@@ -61,7 +61,7 @@ public class ShPref {
         return contains(Contextor.getInstance().getContext().getString(key));
     }
 
-    private static boolean contains(String key) {
+    public static boolean contains(String key) {
         return sShPref.contains(key);
     }
 
