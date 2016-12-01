@@ -86,7 +86,7 @@ String myString = ShPref.getString(R.string.some_key);
 int myInt= ShPref.getInt("HardCodedKey"); 
 
 // Get value as an object
-Object obj = ShPref.get(R.string_some_key);
+Object obj = ShPref.get(R.string_some_key); //excluding double
 
 // Get a list
  List<Integer> list = ShPref.getListOfIntegers("myListKey");
