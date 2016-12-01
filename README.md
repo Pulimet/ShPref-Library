@@ -1,4 +1,8 @@
-[ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion)    [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ShPref-brightgreen.svg?style=flat)]()   <a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.2"><img src="https://img.shields.io/badge/Methods and size-core: 126 | deps: 16653 | 23 KB-e91e63.svg"/></a>
+[ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion)    
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ShPref-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4744)
+
+<a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.2"><img src="https://img.shields.io/badge/Methods and size-core: 126 | deps: 16653 | 23 KB-e91e63.svg"/></a>
 
 # ShPref-Library
 
