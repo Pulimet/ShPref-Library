@@ -2,7 +2,7 @@
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ShPref-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4744)
 
-<a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.2"><img src="https://img.shields.io/badge/Methods and size-core: 126 | deps: 16653 | 23 KB-e91e63.svg"/></a>
+<a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.3"><img src="https://img.shields.io/badge/Methods and size-core: 128 | deps: 16653 | 23 KB-e91e63.svg"/></a>
 
 # ShPref-Library
 
@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.utils:shpref:1.2'
+    compile 'net.alexandroid.utils:shpref:1.3'
 }
 ```
 
