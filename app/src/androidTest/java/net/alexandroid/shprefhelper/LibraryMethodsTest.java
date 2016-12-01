@@ -11,15 +11,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 
 @RunWith(AndroidJUnit4.class)
 public class LibraryMethodsTest {
 
     private static final String KEY_1 = "KEY_1";
+    private static final String KEY_2 = "KEY_2";
+    private static final String KEY_3 = "KEY_3";
+    private static final String KEY_4 = "KEY_4";
+    private static final String KEY_5 = "KEY_5";
+    private static final String KEY_6 = "KEY_6";
 
     private static final String VALUE_STRING = "Some string";
     private static final String DEFAULT_VALUE_STRING = "Some default value";
@@ -64,6 +71,17 @@ public class LibraryMethodsTest {
         ShPref.put(KEY_1, VALUE_INTEGER);
         ShPref.remove(KEY_1);
         assertEquals("Remove method doesn't remove value", 0, ShPref.getInt(KEY_1));
+    }
+
+    @Test
+    public void removeListTest() {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+        ShPref.putList(KEY_1, list);
+        ShPref.removeList(KEY_1);
+        assertTrue("removeList method doesn't work as expected", ShPref.getListOfIntegers(KEY_1).size() == 0);
     }
 
     // Contains
@@ -149,7 +167,6 @@ public class LibraryMethodsTest {
     }
 
 
-
     // Put and get float
 
     @Test
@@ -169,7 +186,6 @@ public class LibraryMethodsTest {
         assertEquals("Method getFloat doesn't return the default value 002",
                 DEFAULT_VALUE_FLOAT, ShPref.getFloat(R.string.test_key_1, DEFAULT_VALUE_FLOAT), 0.0f);
     }
-
 
 
     // Put and get double
@@ -217,12 +233,47 @@ public class LibraryMethodsTest {
     // List tests
     @Test
     public void putAndGetList() {
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> integerList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list.add(i);
+            integerList.add(i);
         }
-        ShPref.putList(KEY_1, list);
-        assertEquals("Put and get list error", list, ShPref.getListOfIntegers(KEY_1));
+        ShPref.putList(KEY_1, integerList);
+        assertEquals("Put and get list error with Integer", integerList, ShPref.getListOfIntegers(KEY_1));
+
+        ArrayList<Long> longList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            longList.add((long) i);
+        }
+        ShPref.putList(KEY_1, longList);
+        assertEquals("Put and get list error with Long", longList, ShPref.getListOfLongs(KEY_1));
+
+        ArrayList<Boolean> booleanList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            booleanList.add(true);
+        }
+        ShPref.putList(KEY_1, booleanList);
+        assertEquals("Put and get list error with Boolean", booleanList, ShPref.getListOfBooleans(KEY_1));
+
+        ArrayList<Float> floatList = new ArrayList<>();
+        for (float i = 1; i < 11; i++) {
+            floatList.add(i / 2);
+        }
+        ShPref.putList(KEY_1, floatList);
+        assertEquals("Put and get list error with Float", floatList, ShPref.getListOfFloats(KEY_1));
+
+        ArrayList<String> stringList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            stringList.add(String.format(Locale.ENGLISH, "Test %d", i));
+        }
+        ShPref.putList(KEY_1, stringList);
+        assertEquals("Put and get list error with String", stringList, ShPref.getListOfStrings(KEY_1));
+
+        ArrayList<Double> doubleList = new ArrayList<>();
+        for (double i = 1; i < 11; i++) {
+            doubleList.add(i / 2);
+        }
+        ShPref.putList(KEY_1, doubleList);
+        assertEquals("Put and get list error with Double", doubleList, ShPref.getListOfDoubles(KEY_1));
     }
 
     @Test
@@ -231,9 +282,9 @@ public class LibraryMethodsTest {
         list.add(VALUE_INTEGER);
         list.add(VALUE_LONG);
         list.add(VALUE_BOOLEAN);
-        list.add(VALUE_DOUBLE);
         list.add(VALUE_FLOAT);
         list.add(VALUE_STRING);
+        //list.add(VALUE_DOUBLE);
 
         ShPref.putList(KEY_1, list);
 
@@ -241,23 +292,66 @@ public class LibraryMethodsTest {
         assertEquals("Mixed list getting int value fail", VALUE_INTEGER, result.get(0));
         assertEquals("Mixed list getting long value fail", VALUE_LONG, result.get(1));
         assertEquals("Mixed list getting boolean value fail", VALUE_BOOLEAN, result.get(2));
-        assertEquals("Mixed list getting double value fail", VALUE_DOUBLE, result.get(3));
-        assertEquals("Mixed list getting float value fail", VALUE_FLOAT, result.get(4));
-        assertEquals("Mixed list getting String value fail", VALUE_STRING, result.get(5));
-
-
+        assertEquals("Mixed list getting float value fail", VALUE_FLOAT, result.get(3));
+        assertEquals("Mixed list getting String value fail", VALUE_STRING, result.get(4));
+        //assertEquals("Mixed list getting double value fail", VALUE_DOUBLE, result.get(5));
     }
 
     // Get method
 
     @Test
     public void getTest() {
+        ShPref.put(KEY_1, VALUE_INTEGER);
+        assertEquals("Get method check for integer failed", VALUE_INTEGER, (int) ShPref.get(KEY_1));
 
+        //ShPref.put(KEY_1, VALUE_DOUBLE);
+        //assertEquals("Get method check for double failed", VALUE_DOUBLE, (double) ShPref.get(KEY_1), 0.0);
+
+        ShPref.put(KEY_1, VALUE_STRING);
+        assertEquals("Get method check for String failed", VALUE_STRING, ShPref.get(KEY_1));
+
+        ShPref.put(KEY_1, VALUE_BOOLEAN);
+        assertEquals("Get method check for boolean failed", VALUE_BOOLEAN, ShPref.get(KEY_1));
+
+        ShPref.put(KEY_1, VALUE_FLOAT);
+        assertEquals("Get method check for float failed", VALUE_FLOAT, (float) ShPref.get(KEY_1), 0.0f);
+
+        ShPref.put(KEY_1, VALUE_LONG);
+        assertEquals("Get method check for long failed", VALUE_LONG, (long) ShPref.get(KEY_1));
     }
 
     // Editor tests
     @Test
     public void editorTest() {
+        new ShPref.Editor()
+                .put(KEY_1, VALUE_LONG)
+                .put(KEY_2, VALUE_FLOAT)
+                .put(KEY_3, VALUE_BOOLEAN)
+                .put(KEY_4, VALUE_STRING)
+                .put(KEY_5, VALUE_DOUBLE)
+                .put(KEY_6, VALUE_INTEGER)
+                .apply();
+        assertEquals("editorTest - get long fail", VALUE_LONG, ShPref.getLong(KEY_1));
+        assertEquals("editorTest - get float fail", VALUE_FLOAT, ShPref.getFloat(KEY_2), 0.0);
+        assertEquals("editorTest - get boolean fail", VALUE_BOOLEAN, ShPref.getBoolean(KEY_3));
+        assertEquals("editorTest - get String fail", VALUE_STRING, ShPref.getString(KEY_4));
+        assertEquals("editorTest - get double fail", VALUE_DOUBLE, ShPref.getDouble(KEY_5), 0.0);
 
+        ShPref.clear();
+
+        new ShPref.Editor()
+                .put(KEY_1, VALUE_LONG)
+                .put(KEY_2, VALUE_FLOAT)
+                .put(KEY_3, VALUE_BOOLEAN)
+                .put(KEY_4, VALUE_STRING)
+                .put(KEY_5, VALUE_DOUBLE)
+                .put(KEY_6, VALUE_INTEGER)
+                .commit();
+
+        assertEquals("editorTest - get long fail", VALUE_LONG, ShPref.getLong(KEY_1));
+        assertEquals("editorTest - get float fail", VALUE_FLOAT, ShPref.getFloat(KEY_2), 0.0);
+        assertEquals("editorTest - get boolean fail", VALUE_BOOLEAN, ShPref.getBoolean(KEY_3));
+        assertEquals("editorTest - get String fail", VALUE_STRING, ShPref.getString(KEY_4));
+        assertEquals("editorTest - get double fail", VALUE_DOUBLE, ShPref.getDouble(KEY_5), 0.0);
     }
 }

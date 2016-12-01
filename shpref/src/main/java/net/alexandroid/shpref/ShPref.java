@@ -24,6 +24,8 @@ public class ShPref {
     public static final int APPLY = 0;
     public static final int COMMIT = 1;
 
+    public static final String SPECIAL_TAG_FOR_DOUBLES = "specialTagForDoubles";
+
     /**
      * Default writing method
      */
@@ -89,20 +91,20 @@ public class ShPref {
      * @param value - the new value for the preference. Passing null for this argument is equivalent to calling remove(key)
      */
     public static void put(String key, Object value) {
-        SharedPreferences.Editor editor;
+        SharedPreferences.Editor editor = sShPref.edit();
 
         if (value instanceof String || value == null) {
-            editor = sShPref.edit().putString(key, (String) value);
+            editor.putString(key, (String) value);
         } else if (value instanceof Integer) {
-            editor = sShPref.edit().putInt(key, (int) value);
+            editor.putInt(key, (int) value);
         } else if (value instanceof Boolean) {
-            editor = sShPref.edit().putBoolean(key, (boolean) value);
+            editor.putBoolean(key, (boolean) value);
         } else if (value instanceof Float) {
-            editor = sShPref.edit().putFloat(key, (float) value);
+            editor.putFloat(key, (float) value);
         } else if (value instanceof Double) {
-            editor = sShPref.edit().putLong(key, Double.doubleToRawLongBits((Double) value));
+            editor.putLong(key, Double.doubleToRawLongBits((Double) value));
         } else if (value instanceof Long) {
-            editor = sShPref.edit().putLong(key, (long) value);
+            editor.putLong(key, (long) value);
         } else {
             return;
         }
@@ -123,7 +125,11 @@ public class ShPref {
 
         for (int i = 0; i < list.size(); i++) {
             put(String.format(Locale.ENGLISH, "listKey_%s_%d", key, i), list.get(i));
+
         }
+
+        // To mark the end of list and prevent collisions with lists saved before with the same key
+        ShPref.remove(String.format(Locale.ENGLISH, "listKey_%s_%d", key, list.size()));
     }
 
 
@@ -426,8 +432,8 @@ public class ShPref {
 
     // =========== Get lists ==============
 
-    public static List<String> getListOfStrings(String key) {
-        List<String> list = new ArrayList<>();
+    public static ArrayList<String> getListOfStrings(String key) {
+        ArrayList<String> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
         while (contains(itemKey)) {
@@ -438,8 +444,8 @@ public class ShPref {
         return list;
     }
 
-    public static List<Integer> getListOfIntegers(String key) {
-        List<Integer> list = new ArrayList<>();
+    public static ArrayList<Integer> getListOfIntegers(String key) {
+        ArrayList<Integer> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
         while (contains(itemKey)) {
@@ -450,8 +456,8 @@ public class ShPref {
         return list;
     }
 
-    public static List<Boolean> getListOfBooleans(String key) {
-        List<Boolean> list = new ArrayList<>();
+    public static ArrayList<Boolean> getListOfBooleans(String key) {
+        ArrayList<Boolean> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
         while (contains(itemKey)) {
@@ -462,8 +468,8 @@ public class ShPref {
         return list;
     }
 
-    public static List<Float> getListOfFloats(String key) {
-        List<Float> list = new ArrayList<>();
+    public static ArrayList<Float> getListOfFloats(String key) {
+        ArrayList<Float> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
         while (contains(itemKey)) {
@@ -474,8 +480,8 @@ public class ShPref {
         return list;
     }
 
-    public static List<Double> getListOfDoubles(String key) {
-        List<Double> list = new ArrayList<>();
+    public static ArrayList<Double> getListOfDoubles(String key) {
+        ArrayList<Double> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
         while (contains(itemKey)) {
@@ -486,8 +492,8 @@ public class ShPref {
         return list;
     }
 
-    public static List<Long> getListOfLongs(String key) {
-        List<Long> list = new ArrayList<>();
+    public static ArrayList<Long> getListOfLongs(String key) {
+        ArrayList<Long> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
         while (contains(itemKey)) {
@@ -498,10 +504,15 @@ public class ShPref {
         return list;
     }
 
+    /**
+     * Can't return type double
+     */
     public static ArrayList getMixedList(String key) {
         ArrayList<Object> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
+
+
         while (contains(itemKey)) {
             Object obj = get(itemKey);
             list.add(obj);
@@ -511,6 +522,9 @@ public class ShPref {
         return list;
     }
 
+    /**
+     * Can't return type double
+     */
     public static Object get(String itemKey) {
         Map<String, ?> all = sShPref.getAll();
         Object object = all.get(itemKey);
@@ -523,8 +537,6 @@ public class ShPref {
             return getBoolean(itemKey);
         } else if (object instanceof Float) {
             return getFloat(itemKey);
-        } else if (object instanceof Double) {
-            return getDouble(itemKey);
         } else if (object instanceof Long) {
             return getLong(itemKey);
         } else {
@@ -554,6 +566,10 @@ public class ShPref {
             forceCommit = false;
             editor.commit();
         }
+    }
+
+    public static void removeList(String key) {
+        ShPref.remove(String.format(Locale.ENGLISH, "listKey_%s_%d", key, 0));
     }
 
     // Remove force
