@@ -50,6 +50,9 @@ public class ShPref {
         sDefaultWriteMode = defaultWriteMode;
     }
 
+    public static void setDefaultWriteMode(int defaultWriteMode) {
+        sDefaultWriteMode = defaultWriteMode;
+    }
 
     // ============= Contains ============
 
@@ -495,8 +498,8 @@ public class ShPref {
         return list;
     }
 
-    public static List getMixedList(String key) {
-        List<Object> list = new ArrayList<>();
+    public static ArrayList getMixedList(String key) {
+        ArrayList<Object> list = new ArrayList<>();
         int i = 0;
         String itemKey = String.format(Locale.ENGLISH, "listKey_%s_%d", key, i);
         while (contains(itemKey)) {
