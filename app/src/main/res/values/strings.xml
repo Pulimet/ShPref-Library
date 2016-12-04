@@ -2,7 +2,7 @@
     <string name="app_name">ShPrefHelper</string>
     <string name="save">Save</string>
     <string name="load">Load</string>
-    <string name="load2">Load</string>
+    <string name="load2">Load2</string>
     <string name="sample_app">Sample app</string>
     <string name="key_key">key</string>
     <string name="some_text_was_saved">Some text was saved</string>
