@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.3"
     defaultConfig {
         applicationId "net.alexandroid.shprefhelper"
-        minSdkVersion 10
+        minSdkVersion 18 // uiautomator usage (10)
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -24,6 +24,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
 
     testCompile 'junit:junit:4.12'
     
