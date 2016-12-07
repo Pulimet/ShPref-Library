@@ -13,7 +13,9 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import static net.alexandroid.shpref.ShPref.put;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -59,7 +61,7 @@ public class LibraryMethodsTest {
 
     @Test
     public void testClear() {
-        ShPref.put(KEY_1, VALUE_STRING);
+        put(KEY_1, VALUE_STRING);
         ShPref.clear();
         assertNull("Clear method doesn't remove all values from Shared Preferences", ShPref.getString(KEY_1));
     }
@@ -68,7 +70,7 @@ public class LibraryMethodsTest {
 
     @Test
     public void removeTest() {
-        ShPref.put(KEY_1, VALUE_INTEGER);
+        put(KEY_1, VALUE_INTEGER);
         ShPref.remove(KEY_1);
         assertEquals("Remove method doesn't remove value", 0, ShPref.getInt(KEY_1));
     }
@@ -88,11 +90,11 @@ public class LibraryMethodsTest {
 
     @Test
     public void testContains() {
-        ShPref.put(KEY_1, VALUE_STRING);
+        put(KEY_1, VALUE_STRING);
         boolean isContains = ShPref.contains(KEY_1);
         assertEquals("Contains method return wrong result. 001", true, isContains);
 
-        ShPref.put(R.string.test_key_1, VALUE_STRING);
+        put(R.string.test_key_1, VALUE_STRING);
         isContains = ShPref.contains(R.string.test_key_1);
         assertEquals("Contains method return wrong result. 002", true, isContains);
     }
@@ -100,19 +102,19 @@ public class LibraryMethodsTest {
     // Put and get String
     @Test
     public void testPutStringNull() {
-        ShPref.put(KEY_1, null);
+        put(KEY_1, null);
         assertNull("String is not null as should be 001", ShPref.getString(KEY_1));
 
-        ShPref.put(R.string.test_key_1, null);
+        put(R.string.test_key_1, null);
         assertNull("String is not null as should be 002", ShPref.getString(R.string.test_key_1));
     }
 
     @Test
     public void testPutAndGetString() {
-        ShPref.put(KEY_1, VALUE_STRING);
+        put(KEY_1, VALUE_STRING);
         assertEquals("String put and get error 001", VALUE_STRING, ShPref.getString(KEY_1));
 
-        ShPref.put(R.string.test_key_1, VALUE_STRING);
+        put(R.string.test_key_1, VALUE_STRING);
         assertEquals("String put and get error 002", VALUE_STRING, ShPref.getString(R.string.test_key_1));
     }
 
@@ -129,10 +131,10 @@ public class LibraryMethodsTest {
 
     @Test
     public void testPutAndGetInt() {
-        ShPref.put(KEY_1, VALUE_INTEGER);
+        put(KEY_1, VALUE_INTEGER);
         assertEquals("Int put and get error 001", VALUE_INTEGER, ShPref.getInt(KEY_1));
 
-        ShPref.put(R.string.test_key_1, VALUE_INTEGER);
+        put(R.string.test_key_1, VALUE_INTEGER);
         assertEquals("Int put and get error 002", VALUE_INTEGER, ShPref.getInt(R.string.test_key_1));
     }
 
@@ -150,10 +152,10 @@ public class LibraryMethodsTest {
 
     @Test
     public void testPutAndGetBoolean() {
-        ShPref.put(KEY_1, VALUE_BOOLEAN);
+        put(KEY_1, VALUE_BOOLEAN);
         assertEquals("Boolean put and get error 001", VALUE_BOOLEAN, ShPref.getBoolean(KEY_1));
 
-        ShPref.put(R.string.test_key_1, VALUE_BOOLEAN);
+        put(R.string.test_key_1, VALUE_BOOLEAN);
         assertEquals("Boolean put and get error 002", VALUE_BOOLEAN, ShPref.getBoolean(R.string.test_key_1));
     }
 
@@ -171,10 +173,10 @@ public class LibraryMethodsTest {
 
     @Test
     public void testPutAndGetFloat() {
-        ShPref.put(KEY_1, VALUE_FLOAT);
+        put(KEY_1, VALUE_FLOAT);
         assertEquals("Float put and get error 001", VALUE_FLOAT, ShPref.getFloat(KEY_1), 0.0f);
 
-        ShPref.put(R.string.test_key_1, VALUE_FLOAT);
+        put(R.string.test_key_1, VALUE_FLOAT);
         assertEquals("Float put and get error 002", VALUE_FLOAT, ShPref.getFloat(R.string.test_key_1), 0.0f);
     }
 
@@ -192,10 +194,10 @@ public class LibraryMethodsTest {
 
     @Test
     public void testPutAndGetDouble() {
-        ShPref.put(KEY_1, VALUE_DOUBLE);
+        put(KEY_1, VALUE_DOUBLE);
         assertEquals("Double put and get error 001", VALUE_DOUBLE, ShPref.getDouble(KEY_1), 0.0);
 
-        ShPref.put(R.string.test_key_1, VALUE_DOUBLE);
+        put(R.string.test_key_1, VALUE_DOUBLE);
         assertEquals("Double put and get error 002", VALUE_DOUBLE, ShPref.getDouble(R.string.test_key_1), 0.0);
     }
 
@@ -213,10 +215,10 @@ public class LibraryMethodsTest {
 
     @Test
     public void testPutAndGetLong() {
-        ShPref.put(KEY_1, VALUE_LONG);
+        put(KEY_1, VALUE_LONG);
         assertEquals("Long put and get error 001", VALUE_LONG, ShPref.getLong(KEY_1));
 
-        ShPref.put(R.string.test_key_1, VALUE_LONG);
+        put(R.string.test_key_1, VALUE_LONG);
         assertEquals("Long put and get error 002", VALUE_LONG, ShPref.getLong(R.string.test_key_1));
     }
 
@@ -301,22 +303,22 @@ public class LibraryMethodsTest {
 
     @Test
     public void getTest() {
-        ShPref.put(KEY_1, VALUE_INTEGER);
+        put(KEY_1, VALUE_INTEGER);
         assertEquals("Get method check for integer failed", VALUE_INTEGER, (int) ShPref.get(KEY_1));
 
         //ShPref.put(KEY_1, VALUE_DOUBLE);
         //assertEquals("Get method check for double failed", VALUE_DOUBLE, (double) ShPref.get(KEY_1), 0.0);
 
-        ShPref.put(KEY_1, VALUE_STRING);
+        put(KEY_1, VALUE_STRING);
         assertEquals("Get method check for String failed", VALUE_STRING, ShPref.get(KEY_1));
 
-        ShPref.put(KEY_1, VALUE_BOOLEAN);
+        put(KEY_1, VALUE_BOOLEAN);
         assertEquals("Get method check for boolean failed", VALUE_BOOLEAN, ShPref.get(KEY_1));
 
-        ShPref.put(KEY_1, VALUE_FLOAT);
+        put(KEY_1, VALUE_FLOAT);
         assertEquals("Get method check for float failed", VALUE_FLOAT, (float) ShPref.get(KEY_1), 0.0f);
 
-        ShPref.put(KEY_1, VALUE_LONG);
+        put(KEY_1, VALUE_LONG);
         assertEquals("Get method check for long failed", VALUE_LONG, (long) ShPref.get(KEY_1));
     }
 
@@ -336,22 +338,39 @@ public class LibraryMethodsTest {
         assertEquals("editorTest - get boolean fail", VALUE_BOOLEAN, ShPref.getBoolean(KEY_3));
         assertEquals("editorTest - get String fail", VALUE_STRING, ShPref.getString(KEY_4));
         assertEquals("editorTest - get double fail", VALUE_DOUBLE, ShPref.getDouble(KEY_5), 0.0);
+        assertEquals("editorTest - get int fail", VALUE_INTEGER, ShPref.getInt(KEY_6));
 
         ShPref.clear();
 
         new ShPref.Editor()
+                .put(R.string.test_key_1, VALUE_LONG)
+                .put(R.string.test_key_2, VALUE_FLOAT)
+                .put(R.string.test_key_3, VALUE_BOOLEAN)
+                .put(R.string.test_key_4, VALUE_STRING)
+                .put(R.string.test_key_5, VALUE_DOUBLE)
+                .put(R.string.test_key_6, VALUE_INTEGER)
+                .commit();
+
+        assertEquals("editorTest - get long fail", VALUE_LONG, ShPref.getLong(R.string.test_key_1));
+        assertEquals("editorTest - get float fail", VALUE_FLOAT, ShPref.getFloat(R.string.test_key_2), 0.0);
+        assertEquals("editorTest - get boolean fail", VALUE_BOOLEAN, ShPref.getBoolean(R.string.test_key_3));
+        assertEquals("editorTest - get String fail", VALUE_STRING, ShPref.getString(R.string.test_key_4));
+        assertEquals("editorTest - get double fail", VALUE_DOUBLE, ShPref.getDouble(R.string.test_key_5), 0.0);
+        assertEquals("editorTest - get double fail", VALUE_INTEGER, ShPref.getInt(R.string.test_key_6));
+
+        ShPref.clear();
+
+        put(KEY_2, VALUE_STRING);
+
+        new ShPref.Editor()
                 .put(KEY_1, VALUE_LONG)
-                .put(KEY_2, VALUE_FLOAT)
+                .remove(KEY_2)
                 .put(KEY_3, VALUE_BOOLEAN)
-                .put(KEY_4, VALUE_STRING)
-                .put(KEY_5, VALUE_DOUBLE)
-                .put(KEY_6, VALUE_INTEGER)
                 .commit();
 
         assertEquals("editorTest - get long fail", VALUE_LONG, ShPref.getLong(KEY_1));
-        assertEquals("editorTest - get float fail", VALUE_FLOAT, ShPref.getFloat(KEY_2), 0.0);
+        assertFalse("editorTest - remove pref failed", ShPref.contains(KEY_2));
         assertEquals("editorTest - get boolean fail", VALUE_BOOLEAN, ShPref.getBoolean(KEY_3));
-        assertEquals("editorTest - get String fail", VALUE_STRING, ShPref.getString(KEY_4));
-        assertEquals("editorTest - get double fail", VALUE_DOUBLE, ShPref.getDouble(KEY_5), 0.0);
+
     }
 }

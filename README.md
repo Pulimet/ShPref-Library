@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.utils:shpref:1.3'
+    compile 'net.alexandroid.utils:shpref:1.4'
 }
 ```
 

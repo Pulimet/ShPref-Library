@@ -20,4 +20,9 @@
 
 
     <string name="test_key_1">test_key_1</string>
+    <string name="test_key_2">test_key_2</string>
+    <string name="test_key_3">test_key_3</string>
+    <string name="test_key_4">test_key_4</string>
+    <string name="test_key_5">test_key_5</string>
+    <string name="test_key_6">test_key_6</string>
 </resources>
