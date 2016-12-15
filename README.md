@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.utils:shpref:1.3'
+    compile 'net.alexandroid.utils:shpref:1.4'
 }
 ```
 
@@ -41,6 +41,12 @@ public class MyApplication extends Application {
         android:name=".MyApplication"
         ...>
 ```
+
+# Release notes
+* 1.4 - Added remove method to Editor
+* 1.3 - Tests and bug fixes
+* 1.2 - Save doubles support. Put null as a value bugfix. Logs are removed. Added contains and clear methods. New bonus Contextor and Logger classes. Chainning by using Editor. Ability to get values without default value.
+* 1.1 - JavaDoc, readme file, bug fixes
 
 # How to use it
 

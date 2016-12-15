@@ -631,10 +631,22 @@ public class ShPref {
             this.editor = sShPref.edit();
         }
 
+        /**
+         * Put key value to shared preferences
+         *
+         * @param key   - string resource id as a key. The name of the preference to modify.
+         * @param value - the new value for the preference. Passing null for this argument is equivalent to calling remove(key)
+         */
         public Editor put(@StringRes int key, Object value) {
             return put(Contextor.getInstance().getContext().getString(key), value);
         }
 
+        /**
+         * Put key value to shared preferences.
+         *
+         * @param key   - string as a key. The name of the preference to modify.
+         * @param value - the new value for the preference. Passing null for this argument is equivalent to calling remove(key)
+         */
         public Editor put(String key, Object value) {
             if (value instanceof String) {
                 editor.putString(key, (String) value);
@@ -649,6 +661,21 @@ public class ShPref {
             } else if (value instanceof Long) {
                 editor.putLong(key, (long) value);
             }
+            return this;
+        }
+
+        /**
+         * @param key The name of the preference to remove.
+         */
+        public Editor remove(@StringRes int key) {
+            return remove(Contextor.getInstance().getContext().getString(key));
+        }
+
+        /**
+         * @param key The name of the preference to remove.
+         */
+        public Editor remove(String key) {
+            editor.remove(key);
             return this;
         }
 
