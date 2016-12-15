@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "24.0.3"
+    buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "net.alexandroid.shprefhelper"
         minSdkVersion 18 // uiautomator usage (10)
@@ -29,7 +29,7 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     
-    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:appcompat-v7:25.1.0'
 
     compile project(':shpref')
 }
