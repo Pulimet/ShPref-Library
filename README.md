@@ -53,11 +53,10 @@ public class MyApplication extends Application {
 On initialization (at yours application class) you should pass default saving mode as a second argument. 
 As you know, there are two options to save: APPLY (faster and asynchronous) or COMMIT. 
 
-
 With ShPref library you can use following types: String, int, boolean, float, double, long and lists with that types.
-
- <br> 
+<br><br>
 - Put:
+<br><br>
 ```sh
 // Save using a resource as a key
 ShPref.put(R.string.some_key, "Sample text");
@@ -80,8 +79,9 @@ for (int i = 0; i < 10; i++) {
 ShPref.putList("myListKey", list);    
 ```
 
- <br>
+ <br> <br>
 - Get:
+ <br> <br>
 ```sh
 // Get a value and if it not exist get a default value that was passed as a second argument
 String myString = ShPref.getString(R.string.some_key, "Default value");
@@ -98,27 +98,30 @@ Object obj = ShPref.get(R.string_some_key); //excluding double
  List<Integer> list = ShPref.getListOfIntegers("myListKey");
 ```
 
- <br> 
+ <br><br> 
 - Contains:
+ <br>  <br> 
 ```sh
 // Checking for existence
 boolean isContains = ShPref.contains(R.string.key_key);
 ```
 
- <br> 
+ <br>  <br> 
 - Remove:
+ <br>  <br> 
 ```sh
 ShPref.remove(R.string.key_key);
 ShPref.remove("HardCodedKey");
 ```
 
- <br> 
+ <br>  <br> 
 - Clear:
+ <br>  <br> 
 ```sh
 // Remove all values from the preferences.
 ShPref.clear();
 ```
- <br> 
+ <br>  <br> 
 
 - Mode forcing methods: <br>
 For example if you have choosen as default APPLY mode and you need to save or remove something using COMMIT there are special methods for that case:
@@ -126,7 +129,7 @@ For example if you have choosen as default APPLY mode and you need to save or re
 putC(); removeC(); // Force commit
 putA(); removeA(); // Force apply
 ```
-
+ <br>  <br>  <br> 
 # Bonus
 
 Option to get application Context from anywhere:
@@ -147,9 +150,9 @@ MyLog.setTag("NEW TAG");
 MyLog.i("Testing setTag method ^)");
 ```
 
-![alt tag](http://www.alexandroid.net/downloads/bintray_libs/logs.png)
+![alt tag](http://www.alexandroid.net/blog/logger.png)
 
-
+ <br>  <br>  <br> 
 # License
 
 ```
