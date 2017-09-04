@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MyLog.showLogs(true);
         MyLog.d("Debug test");
         MyLog.e("Error test");
-        MyLog.setTag("NEW TAG");
+        MyLog.setTag("MyLog-NEW_TAG");
         MyLog.i("Testing setTag method ^)");
 
         mTextView.setText(R.string.logger_test);

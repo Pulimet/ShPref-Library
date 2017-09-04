@@ -5,7 +5,7 @@ import android.util.Log;
 import java.text.MessageFormat;
 
 public class MyLog {
-    private static String sTag = "MyLog - ";
+    private static String sTag = "MyLog-";
     private static boolean sShowLogs = false;
 
     public static void showLogs(boolean pShowLogs) {

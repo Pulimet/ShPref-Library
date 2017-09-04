@@ -40,7 +40,7 @@ public class MainActivityTest {
     public void testUI() throws InterruptedException, UiObjectNotFoundException {
         Activity activity = mMainActivityActivityTestRule.getActivity();
         assertNotNull(activity.findViewById(R.id.textView));
-        TextView textView = (TextView) activity.findViewById(R.id.textView);
+        TextView textView = activity.findViewById(R.id.textView);
         assertTrue(textView.isShown());
         assertEquals(textView.getText(), activity.getString(R.string.sample_app));
 
@@ -120,7 +120,7 @@ public class MainActivityTest {
 
     private void clickOnWidgetAndWait(UiObject aWidget) throws UiObjectNotFoundException, InterruptedException {
         aWidget.click();
-        waitSeconds(4);
+        waitSeconds(2);
     }
 
     private void waitSeconds(int sec) throws InterruptedException {

@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">ShPrefHelper</string>
-    <string name="save">Save</string>
-    <string name="load">Load</string>
-    <string name="load2">Load2</string>
+    <string name="save">SAVE</string>
+    <string name="load">LOAD</string>
+    <string name="load2">LOAD2</string>
     <string name="sample_app">Sample app</string>
     <string name="key_key">key</string>
     <string name="some_text_was_saved">Some text was saved</string>
     <string name="loaded_text">"Loaded text: "</string>
-    <string name="remove">Remove</string>
+    <string name="remove">REMOVE</string>
     <string name="saved_text_removed">Saved text removed</string>
-    <string name="contains">Contains?</string>
+    <string name="contains">CONTAINS?</string>
     <string name="contains2">"Contains: "</string>
-    <string name="save_with_editor">Save with Editor</string>
-    <string name="test_logger">Test Logger</string>
+    <string name="save_with_editor">SAVE WITH EDITOR</string>
+    <string name="test_logger">TEST LOGGER</string>
     <string name="logger_test">Logger test</string>
-    <string name="save_list">Save list</string>
-    <string name="load_list">Load list</string>
+    <string name="save_list">SAVE LIST</string>
+    <string name="load_list">LOAD LIST</string>
     <string name="saved_a_list">Saved a list</string>
 
 
