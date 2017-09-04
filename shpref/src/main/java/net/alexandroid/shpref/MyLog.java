@@ -1,12 +1,20 @@
 package net.alexandroid.shpref;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.text.MessageFormat;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MyLog {
     private static String sTag = "MyLog-";
     private static boolean sShowLogs = false;
+    private static boolean sIsPackageNameVisible = true;
+    private static boolean sIsThreadIdVisible = true;
+    private static boolean sIsTimeVisible = false;
+    private static boolean sIsRemoveOverride = false;
 
     public static void showLogs(boolean pShowLogs) {
         sShowLogs = pShowLogs;
@@ -14,6 +22,22 @@ public class MyLog {
 
     public static void setTag(String pTag) {
         sTag = pTag + " - ";
+    }
+
+    public static void setPackageNameVisibility(boolean newValue) {
+        sIsPackageNameVisible = newValue;
+    }
+
+    public static void setThreadIdVisibility(boolean newValue) {
+        sIsThreadIdVisible = newValue;
+    }
+
+    public static void setIsTimeVisible(boolean newValue) {
+        sIsTimeVisible = newValue;
+    }
+
+    public static void setIsRemoveOverride(boolean newValue) {
+        sIsRemoveOverride = newValue;
     }
 
     public static void v(String msg) {
@@ -58,21 +82,63 @@ public class MyLog {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         if (stackTrace != null && stackTrace.length > 4) {
             StackTraceElement element = stackTrace[4];
+
+            StringBuilder result = new StringBuilder();
+            if (sIsTimeVisible) {
+                result.append(getTime()).append(" - ");
+            }
+
+            if (sIsThreadIdVisible) {
+                result.append("T:").append(getThreadId()).append(" | ");
+            }
+
+            // Class
+            StringBuilder simpleClassName = new StringBuilder();
             String fullClassName = element.getClassName();
 
-            StringBuilder simpleClassName = new StringBuilder(fullClassName.replace(Contextor.getInstance().getContext().getPackageName(), ""));
-            while (simpleClassName.length() < 35) simpleClassName.append(" ");
 
+
+            if (sIsPackageNameVisible) {
+                String packageName = Contextor.getInstance().getContext().getPackageName();
+                simpleClassName.append(fullClassName.replace(packageName, ""));
+
+            } else {
+                simpleClassName.append(fullClassName.substring(fullClassName.lastIndexOf('.')));
+            }
+
+            if (sIsRemoveOverride && simpleClassName.indexOf("$override") != -1) {
+                simpleClassName.replace(simpleClassName.indexOf("$override"), simpleClassName.length(), "*");
+            }
+
+            while (simpleClassName.length() < (sIsPackageNameVisible ? 35 : 15)) {
+                simpleClassName.append(" ");
+            }
+
+            result.append(simpleClassName).append(" # ");
+
+            // Method
             StringBuilder methodName = new StringBuilder(element.getMethodName());
             methodName.append("()");
             while (methodName.length() < 25) methodName.append(" ");
+            result.append(methodName).append(" => ");
 
-            StringBuilder threadId = new StringBuilder(String.valueOf(Thread.currentThread().getId()));
-            while (threadId.length() < 6) threadId.append(" ");
-
-            msg = MessageFormat.format("T:{0} | {1} # {2} => {3}", threadId, simpleClassName, methodName, msg);
-            Log.println(level, sTag, msg);
+            // Message
+            result.append(msg);
+            Log.println(level, sTag, result.toString());
         }
     }
 
+
+    @NonNull
+    private static StringBuilder getThreadId() {
+        StringBuilder threadId = new StringBuilder(String.valueOf(Thread.currentThread().getId()));
+        while (threadId.length() < 6) threadId.append(" ");
+        return threadId;
+    }
+
+
+    private static String getTime() {
+        DateFormat df = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        return df.format(Calendar.getInstance().getTime());
+    }
 }

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setViewsAndListeners() {
-        mTextView = (TextView) findViewById(R.id.textView);
+        mTextView = findViewById(R.id.textView);
         findViewById(R.id.btnLoad).setOnClickListener(this);
         findViewById(R.id.btnSave).setOnClickListener(this);
         findViewById(R.id.btnRemove).setOnClickListener(this);
