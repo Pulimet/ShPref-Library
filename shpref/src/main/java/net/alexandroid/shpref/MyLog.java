@@ -97,7 +97,6 @@ public class MyLog {
             String fullClassName = element.getClassName();
 
 
-
             if (sIsPackageNameVisible) {
                 String packageName = Contextor.getInstance().getContext().getPackageName();
                 simpleClassName.append(fullClassName.replace(packageName, ""));
