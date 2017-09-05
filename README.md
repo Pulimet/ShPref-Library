@@ -1,8 +1,5 @@
-[ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion)    
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ShPref-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4744)
-
-<a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.5"><img src="https://img.shields.io/badge/Methods and size-145 | 24 KB-e91e63.svg"/></a>
+[ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion)       [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ShPref-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4744)
+<a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.5"><img src="https://img.shields.io/badge/Methods and size-145 | 24 KB-e91e63.svg"/></a> [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # ShPref-Library
 
