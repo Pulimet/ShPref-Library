@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +60,7 @@ public class ShPref {
      * @param key - string as a key. The name of the preference to check for existence.
      * @return true if exist
      */
-    public static boolean contains(@StringRes int key) {
+    public static boolean contains(int key) {
         return contains(Contextor.getInstance().getContext().getString(key));
     }
 
@@ -79,7 +77,7 @@ public class ShPref {
      * @param key   - string resource id as a key. The name of the preference to modify.
      * @param value - the new value for the preference. Passing null for this argument is equivalent to calling remove(key)
      */
-    public static void put(@StringRes int key, Object value) {
+    public static void put(int key, Object value) {
         put(Contextor.getInstance().getContext().getString(key), value);
     }
 
@@ -141,7 +139,7 @@ public class ShPref {
      * @param key   - string resource id as a key. The name of the preference to modify.
      * @param value - value
      */
-    public static void putC(@StringRes int key, Object value) {
+    public static void putC(int key, Object value) {
         forceCommit = true;
         put(Contextor.getInstance().getContext().getString(key), value);
     }
@@ -166,7 +164,7 @@ public class ShPref {
      * @param key   - string resource id as a key. The name of the preference to modify.
      * @param value - value
      */
-    public static void putA(@StringRes int key, Object value) {
+    public static void putA(int key, Object value) {
         forceApply = true;
         put(Contextor.getInstance().getContext().getString(key), value);
     }
@@ -192,7 +190,7 @@ public class ShPref {
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static String getString(@StringRes int key, String defaultValue) {
+    public static String getString(int key, String defaultValue) {
         return getString(Contextor.getInstance().getContext().getString(key), defaultValue);
     }
 
@@ -213,8 +211,7 @@ public class ShPref {
      * @param key The name of the preference to retrieve.
      * @return Returns the preference value if it exists or null
      */
-    @Nullable
-    public static String getString(@StringRes int key) {
+    public static String getString(int key) {
         return getString(Contextor.getInstance().getContext().getString(key), null);
     }
 
@@ -222,7 +219,6 @@ public class ShPref {
      * @param key The name of the preference to retrieve.
      * @return Returns the preference value if it exists or null
      */
-    @Nullable
     public static String getString(String key) {
         return getString(key, null);
     }
@@ -234,7 +230,7 @@ public class ShPref {
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static int getInt(@StringRes int key, int defaultValue) {
+    public static int getInt(int key, int defaultValue) {
         return getInt(Contextor.getInstance().getContext().getString(key), defaultValue);
     }
 
@@ -255,7 +251,7 @@ public class ShPref {
      * @param key The name of the preference to retrieve.
      * @return Returns the preference value if it exists or 0
      */
-    public static int getInt(@StringRes int key) {
+    public static int getInt(int key) {
         return getInt(Contextor.getInstance().getContext().getString(key), 0);
     }
 
@@ -274,7 +270,7 @@ public class ShPref {
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static boolean getBoolean(@StringRes int key, boolean defaultValue) {
+    public static boolean getBoolean(int key, boolean defaultValue) {
         return getBoolean(Contextor.getInstance().getContext().getString(key), defaultValue);
     }
 
@@ -295,7 +291,7 @@ public class ShPref {
      * @param key The name of the preference to retrieve.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static boolean getBoolean(@StringRes int key) {
+    public static boolean getBoolean(int key) {
         return getBoolean(Contextor.getInstance().getContext().getString(key), false);
     }
 
@@ -315,7 +311,7 @@ public class ShPref {
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static float getFloat(@StringRes int key, float defaultValue) {
+    public static float getFloat(int key, float defaultValue) {
         return getFloat(Contextor.getInstance().getContext().getString(key), defaultValue);
     }
 
@@ -336,7 +332,7 @@ public class ShPref {
      * @param key The name of the preference to retrieve.
      * @return Returns the preference value if it exists, or 0
      */
-    public static float getFloat(@StringRes int key) {
+    public static float getFloat(int key) {
         return getFloat(Contextor.getInstance().getContext().getString(key), 0);
     }
 
@@ -355,7 +351,7 @@ public class ShPref {
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static double getDouble(@StringRes int key, double defaultValue) {
+    public static double getDouble(int key, double defaultValue) {
         return getDouble(Contextor.getInstance().getContext().getString(key), defaultValue);
     }
 
@@ -376,7 +372,7 @@ public class ShPref {
      * @param key The name of the preference to retrieve.
      * @return Returns the preference value if it exists, or 0
      */
-    public static double getDouble(@StringRes int key) {
+    public static double getDouble(int key) {
         return getDouble(Contextor.getInstance().getContext().getString(key), 0);
     }
 
@@ -396,7 +392,7 @@ public class ShPref {
      * @param defaultValue Value to return if this preference does not exist.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static long getLong(@StringRes int key, long defaultValue) {
+    public static long getLong(int key, long defaultValue) {
         return getLong(Contextor.getInstance().getContext().getString(key), defaultValue);
     }
 
@@ -417,7 +413,7 @@ public class ShPref {
      * @param key The name of the preference to retrieve.
      * @return Returns the preference value if it exists, or defValue
      */
-    public static long getLong(@StringRes int key) {
+    public static long getLong(int key) {
         return getLong(Contextor.getInstance().getContext().getString(key), 0);
     }
 
@@ -550,7 +546,7 @@ public class ShPref {
     /**
      * @param key The name of the preference to remove.
      */
-    public static void remove(@StringRes int key) {
+    public static void remove(int key) {
         remove(Contextor.getInstance().getContext().getString(key));
     }
 
@@ -579,7 +575,7 @@ public class ShPref {
      *
      * @param key - string resource id as a key. The name of the preference to remove.
      */
-    public static void removeA(@StringRes int key) {
+    public static void removeA(int key) {
         forceApply = true;
         remove(Contextor.getInstance().getContext().getString(key));
     }
@@ -599,7 +595,7 @@ public class ShPref {
      *
      * @param key - string resource id as a key. The name of the preference to remove.
      */
-    public static void removeC(@StringRes int key) {
+    public static void removeC(int key) {
         forceCommit = true;
         remove(Contextor.getInstance().getContext().getString(key));
     }
@@ -637,7 +633,7 @@ public class ShPref {
          * @param key   - string resource id as a key. The name of the preference to modify.
          * @param value - the new value for the preference. Passing null for this argument is equivalent to calling remove(key)
          */
-        public Editor put(@StringRes int key, Object value) {
+        public Editor put(int key, Object value) {
             return put(Contextor.getInstance().getContext().getString(key), value);
         }
 
@@ -667,7 +663,7 @@ public class ShPref {
         /**
          * @param key The name of the preference to remove.
          */
-        public Editor remove(@StringRes int key) {
+        public Editor remove(int key) {
             return remove(Contextor.getInstance().getContext().getString(key));
         }
 

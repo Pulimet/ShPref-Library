@@ -1,6 +1,5 @@
 package net.alexandroid.shpref;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -127,14 +126,11 @@ public class MyLog {
         }
     }
 
-
-    @NonNull
     private static StringBuilder getThreadId() {
         StringBuilder threadId = new StringBuilder(String.valueOf(Thread.currentThread().getId()));
         while (threadId.length() < 6) threadId.append(" ");
         return threadId;
     }
-
 
     private static String getTime() {
         DateFormat df = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
