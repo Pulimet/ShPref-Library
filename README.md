@@ -1,5 +1,5 @@
 [ ![Download](https://api.bintray.com/packages/pulimet/utils/shpref/images/download.svg) ](https://bintray.com/pulimet/utils/shpref/_latestVersion)       [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ShPref-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4744)
-<a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.5"><img src="https://img.shields.io/badge/Methods and size-145 | 24 KB-e91e63.svg"/></a> [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+<a href="http://www.methodscount.com/?lib=net.alexandroid.utils%3Ashpref%3A1.6"><img src="https://img.shields.io/badge/Methods and size-104 | 8 KB-e91e63.svg"/></a> [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # ShPref-Library
 
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.utils:shpref:1.5'
+    compile 'net.alexandroid.utils:shpref:1.6'
 }
 ```
 
@@ -40,6 +40,7 @@ public class MyApplication extends Application {
 ```
 
 # Release notes
+* 1.6 - Logger separated (https://github.com/Pulimet/MyLogLibrary), appcompat dependency removed
 * 1.5 - Logger methods for visual customization
 * 1.4 - Added remove method to Editor
 * 1.3 - Tests and bug fixes
@@ -134,27 +135,6 @@ Option to get application Context from anywhere:
 ```sh
 Context appContext = Contextor.getInstance().getContext();
 ```
-
-Logger class:
-```sh
-// Just turn it on
-MyLog.showLogs(true);
-
-MyLog.d("Debug test");
-MyLog.e("Error test");
-
-// Option to change a tag
-MyLog.setTag("NEW TAG");
-MyLog.i("Testing setTag method ^)");
-
-MyLog.setPackageNameVisibility(false);
-MyLog.setThreadIdVisibility(false)
-MyLog.setIsTimeVisible(true)
-MyLog.setIsRemoveOverride(true)
-
-```
-
-![alt tag](http://www.alexandroid.net/blog/logger.png)
 
  <br>  <br>  <br> 
 # License
