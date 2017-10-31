@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.alexandroid.shpref.MyLog;
 import net.alexandroid.shpref.ShPref;
 
 import java.util.ArrayList;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnContains).setOnClickListener(this);
         findViewById(R.id.btnSaveWithEditor).setOnClickListener(this);
         findViewById(R.id.btnLoadTestEditor).setOnClickListener(this);
-        findViewById(R.id.btnTestLogger).setOnClickListener(this);
         findViewById(R.id.btnSaveList).setOnClickListener(this);
         findViewById(R.id.btnLoadList).setOnClickListener(this);
     }
@@ -58,9 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnLoadTestEditor:
                 onLoadDataSavedWithEditorBtnPressed();
-                break;
-            case R.id.btnTestLogger:
-                onTestLoggerBtnPressed();
                 break;
             case R.id.btnSaveList:
                 onSaveListBtnPressed();
@@ -91,12 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String loadedText = ShPref.getString(R.string.key_key, "Default value");
         String result = getString(R.string.loaded_text) + loadedText;
         mTextView.setText(result);
-
-        MyLog.d("Integer: " + ShPref.getInt("Integer", 0));
-        MyLog.d("Boolean: " + ShPref.getBoolean("Boolean", true));
-        MyLog.d("Float: " + ShPref.getFloat("Float", 0.0f));
-        MyLog.d("Long: " + ShPref.getLong("Long", 0L));
-        MyLog.d("Double: " + ShPref.getDouble("Double", 1.0));
         showToast(result);
     }
 
@@ -128,17 +117,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String result = getString(R.string.loaded_text) + loadedText;
         mTextView.setText(result);
         showToast(result);
-    }
-
-    private void onTestLoggerBtnPressed() {
-        MyLog.showLogs(true);
-        MyLog.d("Debug test");
-        MyLog.e("Error test");
-        MyLog.setTag("MyLog-NEW_TAG");
-        MyLog.i("Testing setTag method ^)");
-
-        mTextView.setText(R.string.logger_test);
-        showToast(getString(R.string.logger_test));
     }
 
 

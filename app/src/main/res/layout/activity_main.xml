@@ -67,14 +67,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnTestLogger"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/test_logger"/>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
