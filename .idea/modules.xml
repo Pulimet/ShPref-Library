@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ShPref-Library.iml" filepath="$PROJECT_DIR$/ShPref-Library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shpref/shpref.iml" filepath="$PROJECT_DIR$/shpref/shpref.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShPref-Library.iml" filepath="$PROJECT_DIR$/ShPref-Library.iml" group="ShPref-Library" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="ShPref-Library/app" />
+      <module fileurl="file://$PROJECT_DIR$/shpref/shpref.iml" filepath="$PROJECT_DIR$/shpref/shpref.iml" group="ShPref-Library/shpref" />
     </modules>
   </component>
 </project>

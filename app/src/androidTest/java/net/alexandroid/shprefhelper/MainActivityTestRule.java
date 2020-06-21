@@ -2,7 +2,8 @@ package net.alexandroid.shprefhelper;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.test.rule.ActivityTestRule;
+
+import androidx.test.rule.ActivityTestRule;
 
 
 public class MainActivityTestRule<A extends Activity> extends ActivityTestRule<A> {
