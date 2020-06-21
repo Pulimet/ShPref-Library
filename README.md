@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.utils:shpref:1.6'
+    compile 'net.alexandroid.utils:shpref:1.7'
 }
 ```
 
@@ -40,6 +40,7 @@ public class MyApplication extends Application {
 ```
 
 # Release notes
+* 1.7 - Android X migration + versions update
 * 1.6 - Logger separated (https://github.com/Pulimet/MyLogLibrary), appcompat dependency removed
 * 1.5 - Logger methods for visual customization
 * 1.4 - Added remove method to Editor
