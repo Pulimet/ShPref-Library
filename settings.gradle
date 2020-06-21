@@ -1,1 +1,1 @@
-include ':app', ':shpref'
+include ':app', ':shpref', ':shprefkt'
