@@ -6,9 +6,9 @@ import android.content.Intent;
 import androidx.test.rule.ActivityTestRule;
 
 
-public class MainActivityTestRule<A extends Activity> extends ActivityTestRule<A> {
+public class TheActivityTestRule<A extends Activity> extends ActivityTestRule<A> {
 
-    public MainActivityTestRule(Class<A> activityClass) {
+    public TheActivityTestRule(Class<A> activityClass) {
         super(activityClass);
     }
 

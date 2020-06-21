@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 
 @RunWith(AndroidJUnit4.class)
-public class LibraryMethodsTest {
+public class JavaLibraryMethodsTest {
 
     private static final String KEY_1 = "KEY_1";
     private static final String KEY_2 = "KEY_2";

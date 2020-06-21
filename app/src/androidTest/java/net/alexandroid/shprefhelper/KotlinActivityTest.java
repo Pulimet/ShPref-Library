@@ -23,12 +23,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class KotlinActivityTest {
 
     private UiDevice mDevice;
 
     @Rule
-    public TheActivityTestRule<MainActivity> mMainActivityActivityTestRule = new TheActivityTestRule<>(MainActivity.class);
+    public TheActivityTestRule<KotlinActivity> mMainActivityActivityTestRule = new TheActivityTestRule<>(KotlinActivity.class);
 
     @Before
     public void beforeEachTestClearShPref() {

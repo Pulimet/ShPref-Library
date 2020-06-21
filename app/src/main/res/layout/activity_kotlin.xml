@@ -97,12 +97,6 @@
         android:layout_marginTop="16dp"
         android:text="@string/sample_app" />
 
-    <Button
-        android:id="@+id/btnKotlinActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="@string/kotlin_version" />
 
 
 </LinearLayout>

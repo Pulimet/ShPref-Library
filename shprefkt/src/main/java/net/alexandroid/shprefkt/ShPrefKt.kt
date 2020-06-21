@@ -7,7 +7,8 @@ import androidx.preference.PreferenceManager
 import java.util.*
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class ShPrefKt(private val context: Context, private val defaultWriteMode: Int = APPLY) {
+
+class ShPrefKt @JvmOverloads constructor(private val context: Context, private val defaultWriteMode: Int = APPLY) {
     /**
      * On initialization you can choose the default write method
      * by passing one of following integers as a second argument
@@ -460,7 +461,7 @@ class ShPrefKt(private val context: Context, private val defaultWriteMode: Int =
     }
 
     fun removeList(key: String?) {
-        remove(java.lang.String.format(Locale.ENGLISH, "listKey_%s_%d", key, 0))
+        remove(java.lang.String.format(Locale.ENGLISH, "listKey_%s-%d", key, 0))
     }
     // Remove force
     /**
@@ -536,9 +537,7 @@ class ShPrefKt(private val context: Context, private val defaultWriteMode: Int =
                 is Int -> editor.putInt(key, value)
                 is Boolean -> editor.putBoolean(key, value)
                 is Float -> editor.putFloat(key, value)
-                is Double -> {
-                    editor.putLong(key, java.lang.Double.doubleToRawLongBits((value as Double?)!!))
-                }
+                is Double -> editor.putLong(key, java.lang.Double.doubleToRawLongBits((value as Double?)!!))
                 is Long -> editor.putLong(key, value)
             }
             return this

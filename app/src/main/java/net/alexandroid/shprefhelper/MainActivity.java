@@ -1,11 +1,13 @@
 package net.alexandroid.shprefhelper;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import net.alexandroid.shpref.ShPref;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btnLoadTestEditor).setOnClickListener(this);
         findViewById(R.id.btnSaveList).setOnClickListener(this);
         findViewById(R.id.btnLoadList).setOnClickListener(this);
+        findViewById(R.id.btnKotlinActivity).setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnLoadList:
                 onLoadListBtnPressed();
+                break;
+            case R.id.btnKotlinActivity:
+                startActivity(new Intent(MainActivity.this, KotlinActivity.class));
                 break;
         }
     }
