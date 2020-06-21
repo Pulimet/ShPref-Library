@@ -15,7 +15,8 @@ repositories {
 }
 
 dependencies {
-    compile 'net.alexandroid.utils:shpref:1.7'
+    implementation 'net.alexandroid.utils:shpref:1.7' // Java version
+    implementation 'net.alexandroid.utils:shprefkt:1.7' // Kotlin version
 }
 ```
 
@@ -27,7 +28,9 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ShPref.init(this, ShPref.APPLY);
+        ShPref.init(this, ShPref.APPLY); // Java
+
+        ShPrefKt shpref = ShPrefKt(this); // Kotlin
     }
 }
 ```
@@ -40,7 +43,7 @@ public class MyApplication extends Application {
 ```
 
 # Release notes
-* 1.7 - Android X migration + versions update
+* 1.7 - Android X migration + versions update + Added Kotlin version
 * 1.6 - Logger separated (https://github.com/Pulimet/MyLogLibrary), appcompat dependency removed
 * 1.5 - Logger methods for visual customization
 * 1.4 - Added remove method to Editor
